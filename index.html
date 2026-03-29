@@ -1,1 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>United Assistance — Book Flight</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4fb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #1a3c6e;
+      color: #fff;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    nav span { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+    nav small { font-size: 13px; opacity: 0.75; margin-left: auto; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    /* ── FLIGHT SUMMARY CARD ── */
+    .summary-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+    .summary-card h2 {
+      color: #1a3c6e;
+      font-size: 20px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .route-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .airport-code {
+      font-size: 36px;
+      font-weight: 800;
+      color: #1a3c6e;
+    }
+    .arrow { font-size: 28px; color: #aab; }
+    .flight-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      font-size: 14px;
+      color: #444;
+    }
+    .flight-meta .label { color: #888; font-size: 12px; margin-bottom: 2px; }
+    .flight-meta .value { font-weight: 600; color: #222; }
+    .badge {
+      display: inline-block;
+      background: #e6f4ea;
+      color: #16a34a;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 14px;
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+    }
+    .price { font-size: 32px; font-weight: 800; color: #1a3c6e; }
+    .price small { font-size: 14px; font-weight: 400; color: #888; }
+
+    /* ── BOOKING FORM ── */
+    .form-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+      padding: 28px 32px;
+    }
+    .form-card h2 {
+      color: #1a3c6e;
+      font-size: 18px;
+      margin-bottom: 22px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: 13px; color: #555; font-weight: 600; }
+    input, select {
+      padding: 10px 14px;
+      border: 1px solid #d0d8e8;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #222;
+      background: #f8faff;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus { border-color: #1a3c6e; background: #fff; }
+    .divider { grid-column: 1/-1; border: none; border-top: 1px solid #eef; margin: 6px 0; }
+
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      background: #1a3c6e;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #15305a; }
+
+    /* ── SUCCESS MODAL ── */
+    #success-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    #success-overlay.show { display: flex; }
+    .success-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 48px;
+      text-align: center;
+      max-width: 420px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      animation: pop 0.25s ease;
+    }
+    @keyframes pop {
+      from { transform: scale(0.85); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+    .checkmark { font-size: 56px; margin-bottom: 16px; }
+    .success-box h2 { color: #1a3c6e; font-size: 22px; margin-bottom: 10px; }
+    .success-box p  { color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 6px; }
+    .pnr {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a3c6e;
+      letter-spacing: 4px;
+      margin: 14px 0;
+    }
+    .close-btn {
+      margin-top: 22px;
+      padding: 10px 28px;
+      background: #1a3c6e;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: #888;
+    }
+    .empty h2 { color: #1a3c6e; margin-bottom: 10px; }
+
+    @media (max-width: 520px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .route-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span>✈️ United Assistance</span>
+  <small>Secure Flight Booking</small>
+</nav>
+
+<main id="main-content">
+  <!-- Populated by JS from URL params -->
+</main>
+
+<!-- Success Modal -->
+<div id="success-overlay">
+  <div class="success-box">
+    <div class="checkmark">✅</div>
+    <h2>Booking Confirmed!</h2>
+    <p>Your flight has been reserved.</p>
+    <div class="pnr" id="pnr-code"></div>
+    <p id="confirm-detail" style="color:#1a3c6e;font-weight:600;"></p>
+    <p style="font-size:13px;color:#aaa;margin-top:8px;">A confirmation email will be sent to you shortly.</p>
+    <button class="close-btn" onclick="document.getElementById('success-overlay').classList.remove('show')">
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+  // ── Parse URL params ──────────────────────────────────────────────────────
+  const params = new URLSearchParams(window.location.search);
+  const get = k => params.get(k) || "";
+
+  const flight      = get("flight");
+  const airline     = get("airline");
+  const origin      = get("origin");
+  const destination = get("destination");
+  const departure   = get("departure");
+  const arrival     = get("arrival");
+  const duration    = get("duration");
+  const price       = get("price");
+  const seats       = get("seats");
+  const aircraft    = get("aircraft");
+  const status      = get("status");
+  const passenger   = get("passenger");
+  const meeting     = get("meeting");
+
+  const main = document.getElementById("main-content");
+
+  if (!flight) {
+    main.innerHTML = `
+      <div class="empty">
+        <h2>No Flight Selected</h2>
+        <p>Please go back to your email and click a <b>Book Now</b> button to start booking.</p>
+      </div>`;
+  } else {
+    // ── Format datetimes ───────────────────────────────────────────────────
+    const fmtDT = str => {
+      if (!str) return str;
+      try {
+        return new Date(str).toLocaleString("en-US", {
+          weekday:"short", month:"short", day:"numeric",
+          hour:"2-digit", minute:"2-digit"
+        });
+      } catch { return str; }
+    };
+
+    // ── Render ─────────────────────────────────────────────────────────────
+    main.innerHTML = `
+      <!-- Flight Summary -->
+      <div class="summary-card">
+        <h2>✈️ Flight Summary</h2>
+        <div class="route-row">
+          <div class="airport-code">${origin}</div>
+          <div class="arrow">→</div>
+          <div class="airport-code">${destination}</div>
+        </div>
+
+        <div class="flight-meta">
+          <div>
+            <div class="label">Flight</div>
+            <div class="value">${flight} · ${airline}</div>
+          </div>
+          <div>
+            <div class="label">Aircraft</div>
+            <div class="value">${aircraft || "—"}</div>
+          </div>
+          <div>
+            <div class="label">Departure</div>
+            <div class="value">${fmtDT(departure)}</div>
+          </div>
+          <div>
+            <div class="label">Arrival</div>
+            <div class="value">${fmtDT(arrival)}</div>
+          </div>
+          <div>
+            <div class="label">Duration</div>
+            <div class="value">${duration} min</div>
+          </div>
+          <div>
+            <div class="label">Seats Available</div>
+            <div class="value" style="color:#16a34a;">${seats}</div>
+          </div>
+          ${meeting ? `<div class="full"><div class="label">Meeting</div><div class="value">${meeting}</div></div>` : ""}
+        </div>
+
+        <span class="badge">● ${status || "Confirmed"}</span>
+
+        <div class="price-row">
+          <div class="price">$${parseFloat(price).toFixed(2)} <small>per person</small></div>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="form-card">
+        <h2>👤 Passenger Details</h2>
+        <form id="booking-form" onsubmit="submitBooking(event)">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input id="first-name" type="text" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input id="last-name" type="text" placeholder="Smith"
+                value="${passenger.split(' ').slice(-1)[0] || ''}" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" placeholder="john@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="tel" placeholder="+1 555 000 0000" />
+            </div>
+
+            <div class="form-group">
+              <label for="passport">Passport / ID Number</label>
+              <input id="passport" type="text" placeholder="A12345678" required />
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input id="dob" type="date" required />
+            </div>
+
+            <hr class="divider" />
+
+            <div class="form-group">
+              <label for="seat-pref">Seat Preference</label>
+              <select id="seat-pref">
+                <option value="">No Preference</option>
+                <option>Window</option>
+                <option>Aisle</option>
+                <option>Middle</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="meal-pref">Meal Preference</label>
+              <select id="meal-pref">
+                <option value="">Standard</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Halal</option>
+                <option>Kosher</option>
+                <option>Gluten-Free</option>
+              </select>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- Payment -->
+            <div class="form-group full">
+              <label for="card-name">Cardholder Name</label>
+              <input id="card-name" type="text" placeholder="John Smith" required />
+            </div>
+            <div class="form-group full">
+              <label for="card-number">Card Number</label>
+              <input id="card-number" type="text" placeholder="4242 4242 4242 4242"
+                maxlength="19"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'').replace(/(.{4})/g,'$1 ').trim()"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="expiry">Expiry Date</label>
+              <input id="expiry" type="text" placeholder="MM/YY" maxlength="5"
+                oninput="formatExpiry(this)" required />
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input id="cvv" type="text" placeholder="123" maxlength="4"
+                oninput="this.value=this.value.replace(/\D/g,'')" required />
+            </div>
+
+          </div>
+
+          <button type="submit" class="submit-btn">
+            🔒 Confirm Booking · $${parseFloat(price).toFixed(2)}
+          </button>
+        </form>
+      </div>
+    `;
+  }
+
+  // ── Form helpers ───────────────────────────────────────────────────────────
+  function formatExpiry(input) {
+    let v = input.value.replace(/\D/g, "");
+    if (v.length >= 3) v = v.slice(0,2) + "/" + v.slice(2,4);
+    input.value = v;
+  }
+
+  // ── Generate mock PNR ──────────────────────────────────────────────────────
+  function generatePNR() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    return Array.from({length: 6}, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+  }
+
+  // ── Submit handler ─────────────────────────────────────────────────────────
+  function submitBooking(e) {
+    e.preventDefault();
+
+    const pnr = generatePNR();
+    const firstName = document.getElementById("first-name").value;
+    const lastName  = document.getElementById("last-name").value;
+
+    document.getElementById("pnr-code").textContent = pnr;
+    document.getElementById("confirm-detail").textContent =
+      `${firstName} ${lastName} · ${origin} → ${destination} · ${flight}`;
+
+    document.getElementById("success-overlay").classList.add("show");
+  }
+</script>
+
+</body>
+</html>
