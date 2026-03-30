@@ -6,901 +6,617 @@
   <title>United Assistance — Book Flight</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #0a1628;
-      --navy-mid: #122040;
-      --navy-light: #1c3160;
-      --accent: #2563eb;
-      --accent-bright: #3b82f6;
-      --accent-glow: rgba(37,99,235,0.18);
-      --gold: #f59e0b;
-      --gold-light: #fbbf24;
-      --surface: #ffffff;
-      --surface-2: #f4f6fb;
-      --surface-3: #eaeff8;
-      --border: #dde5f4;
-      --border-strong: #c3cfea;
-      --text-primary: #0d1b35;
-      --text-secondary: #4a5778;
-      --text-muted: #8896b3;
-      --green: #059669;
-      --green-bg: #ecfdf5;
-      --red: #dc2626;
-      --shadow-sm: 0 1px 3px rgba(10,22,40,0.08), 0 1px 2px rgba(10,22,40,0.05);
-      --shadow-md: 0 4px 16px rgba(10,22,40,0.10), 0 2px 6px rgba(10,22,40,0.06);
-      --shadow-lg: 0 12px 40px rgba(10,22,40,0.14), 0 4px 12px rgba(10,22,40,0.08);
-      --radius: 14px;
+      --navy:         #0a1628;
+      --accent:       #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-glow:  rgba(37,99,235,0.18);
+      --gold:         #fbbf24;
+      --surface:      #ffffff;
+      --surface-2:    #f4f6fb;
+      --surface-3:    #eaeff8;
+      --border:       #dde5f4;
+      --border-2:     #c3cfea;
+      --text-1:       #0d1b35;
+      --text-2:       #4a5778;
+      --text-3:       #8896b3;
+      --green:        #059669;
+      --green-bg:     #ecfdf5;
+      --shadow-sm:    0 1px 3px rgba(10,22,40,0.08);
+      --shadow-md:    0 4px 16px rgba(10,22,40,0.10), 0 2px 6px rgba(10,22,40,0.06);
+      --shadow-lg:    0 12px 40px rgba(10,22,40,0.15);
+      --r:            14px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--surface-2);
-      color: var(--text-primary);
+      color: var(--text-1);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ── HEADER ── */
+    /* ══ HEADER ══ */
     header {
       background: var(--navy);
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
     .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 28px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 32px; height: 60px;
+      display: flex; align-items: center; gap: 12px;
     }
-
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
     }
-
     .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+      width: 34px; height: 34px;
+      background: var(--accent);
       border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 17px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
     }
-
     .logo-text {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 17px;
-      color: #fff;
-      letter-spacing: -0.3px;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px;
+      color: #fff; letter-spacing: -0.3px;
+    }
+    .logo-text span { color: var(--gold); }
+    .header-right { margin-left: auto; }
+    .ssl-badge {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500;
     }
 
-    .logo-text span { color: var(--gold-light); }
-
-    .header-right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .secure-badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.55);
-      font-weight: 500;
-    }
-
-    .secure-badge svg { opacity: 0.7; }
-
-    /* ── HERO BANNER ── */
+    /* ══ HERO BANNER ══ */
     .hero {
       background: var(--navy);
-      padding: 36px 28px 0;
-      position: relative;
-      overflow: hidden;
+      padding: 28px 32px 0;
+      position: relative; overflow: hidden;
     }
-
     .hero::before {
       content: '';
-      position: absolute;
-      top: -60px; right: -80px;
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 70%);
+      position: absolute; top: -80px; right: -60px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 68%);
       pointer-events: none;
     }
-
+    /* white curved footer of hero */
     .hero::after {
       content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 48px;
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 44px;
       background: var(--surface-2);
-      border-radius: 24px 24px 0 0;
+      border-radius: 22px 22px 0 0;
     }
-
     .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 1;
     }
 
+    /* breadcrumb */
     .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12.5px;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 18px;
-      font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 500;
+      margin-bottom: 20px;
     }
+    .breadcrumb .sep { opacity: 0.3; }
+    .breadcrumb .cur { color: rgba(255,255,255,0.82); font-weight: 600; }
 
-    .breadcrumb .sep { opacity: 0.35; }
-    .breadcrumb .current { color: rgba(255,255,255,0.8); }
-
-    /* ── ROUTE HERO CARD ── */
-    .route-hero {
+    /* ── the frosted card ── */
+    .route-card {
       background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 16px 16px 0 0;
-      padding: 32px 36px 26px;
-      margin-bottom: -1px;
+      padding: 26px 32px 20px;
     }
 
-    .route-top {
-      display: grid;
-      grid-template-columns: 1fr auto;
+    /* top row: airports | price */
+    .rc-top {
+      display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 24px;
     }
 
-    .route-airports {
+    /* ─ airports + arrow ─ */
+    .rc-route {
       display: flex;
       align-items: center;
       gap: 0;
+      flex: 0 0 auto;   /* don't stretch */
     }
 
-    .airport-block { text-align: left; flex-shrink: 0; }
-    .airport-block.dest { text-align: left; }
+    .rc-airport {}
 
-    .airport-iata {
+    .rc-iata {
       font-family: 'Syne', sans-serif;
-      font-size: 52px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -2px;
+      font-size: 46px; font-weight: 800;
+      color: #fff; line-height: 1;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
     }
 
-    .airport-time {
-      font-size: 13px;
-      color: rgba(255,255,255,0.55);
+    .rc-time {
+      font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,0.5);
       margin-top: 5px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .route-arrow {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      padding: 0 20px;
-      min-width: 120px;
-    }
-
-    .arrow-svg-wrap {
-      width: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .arrow-svg-wrap svg { width: 100%; height: 14px; }
-
-    .route-duration {
-      font-size: 11px;
-      color: rgba(255,255,255,0.4);
       white-space: nowrap;
-      font-weight: 500;
-      letter-spacing: 0.3px;
     }
 
-    .route-price-block {
-      text-align: right;
+    /* dashed line between airports */
+    .rc-arrow {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 5px;
+      width: 150px; flex-shrink: 0;
+      padding: 0 16px;
+    }
+    .rc-arrow svg { width: 100%; height: 12px; display: block; overflow: visible; }
+    .rc-arrow-label {
+      font-size: 10.5px; font-weight: 500;
+      color: rgba(255,255,255,0.38);
+      white-space: nowrap;
+    }
+
+    /* spacer pushes price to right */
+    .rc-spacer { flex: 1; min-width: 0; }
+
+    /* price block */
+    .rc-price {
       flex-shrink: 0;
-      border-left: 1px solid rgba(255,255,255,0.10);
-      padding-left: 32px;
+      text-align: right;
+      border-left: 1px solid rgba(255,255,255,0.12);
+      padding-left: 28px;
     }
-
-    .price-label { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 500; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .price-amount {
-      font-family: 'Syne', sans-serif;
-      font-size: 44px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -1px;
-    }
-
-    .price-amount sup { font-size: 20px; margin-right: 2px; font-weight: 600; vertical-align: super; }
-    .price-per { font-size: 11.5px; color: rgba(255,255,255,0.35); margin-top: 5px; }
-
-    .route-meta-row {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap;
-    }
-
-    .meta-chip {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: rgba(0,0,0);
-      font-weight: 500;
-      padding: 0 18px;
-      border-right: 1px solid rgba(255,255,255,0.10);
+    .rc-price-label {
+      font-size: 10px; font-weight: 600;
+      color: rgba(255,255,255,0.38);
+      text-transform: uppercase; letter-spacing: 0.7px;
+      margin-bottom: 6px;
       white-space: nowrap;
     }
+    .rc-price-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 36px; font-weight: 800;
+      color: #fff; line-height: 1;
+      letter-spacing: -1px; white-space: nowrap;
+    }
+    .rc-price-amount sup {
+      font-size: 17px; font-weight: 600;
+      vertical-align: super; margin-right: 1px;
+    }
+    .rc-price-sub {
+      font-size: 10.5px; color: rgba(255,255,255,0.32);
+      margin-top: 5px;
+    }
 
-    .meta-chip:first-child { padding-left: 0; }
-    .meta-chip:last-child { border-right: none; }
-    .meta-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
-    .meta-chip .dot.gold { background: var(--gold); }
+    /* meta chips row */
+    .rc-meta {
+      display: flex; align-items: center;
+      flex-wrap: wrap; gap: 0;
+      margin-top: 18px; padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .rc-chip {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11.5px; color: rgba(255,255,255,0.48);
+      font-weight: 500; white-space: nowrap;
+      padding: 3px 16px;
+      border-right: 1px solid rgba(255,255,255,0.09);
+    }
+    .rc-chip:first-child { padding-left: 0; }
+    .rc-chip:last-child  { border-right: none; }
+    .rc-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
+    .rc-dot.gold { background: var(--gold); }
 
-    /* ── MAIN LAYOUT ── */
+    /* ══ MAIN LAYOUT ══ */
     main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 28px 64px;
+      max-width: 1100px; margin: 0 auto;
+      padding: 28px 32px 64px;
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: 1fr 332px;
       gap: 24px;
       align-items: start;
     }
 
-    /* ── FORM SECTIONS ── */
-    .form-section {
+    /* ── form col ── */
+    #form-col { min-width: 0; }
+
+    .f-section {
       background: var(--surface);
-      border-radius: var(--radius);
+      border-radius: var(--r);
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border);
       overflow: hidden;
-      margin-bottom: 20px;
-      animation: slideUp 0.4s ease both;
+      margin-bottom: 18px;
+      animation: fadeUp .35s ease both;
+    }
+    .f-section:nth-child(2) { animation-delay: .07s; }
+    .f-section:nth-child(3) { animation-delay: .14s; }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
-    .form-section:nth-child(2) { animation-delay: 0.08s; }
-    .form-section:nth-child(3) { animation-delay: 0.16s; }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .section-header {
-      padding: 20px 28px;
+    .f-header {
+      padding: 18px 26px;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 12px;
     }
-
-    .section-number {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .f-num {
+      width: 27px; height: 27px;
+      background: var(--accent); color: #fff;
+      border-radius: 8px; font-size: 13px; font-weight: 700;
       font-family: 'Syne', sans-serif;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
+    .f-title  { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--text-1); }
+    .f-sub    { font-size: 12px; color: var(--text-3); margin-top: 1px; }
 
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
+    .f-body { padding: 22px 26px; }
 
-    .section-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 1px;
-    }
-
-    .section-body {
-      padding: 24px 28px;
-    }
-
-    .form-grid {
+    .f-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
     .field.full { grid-column: 1 / -1; }
-    .field.third { grid-column: span 1; }
 
     label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
+      font-size: 11.5px; font-weight: 600;
+      color: var(--text-2);
+      text-transform: uppercase; letter-spacing: 0.35px;
     }
 
-    .input-wrap {
-      position: relative;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
+    .inp-wrap { position: relative; }
+    .inp-icon {
+      position: absolute; left: 13px; top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-      display: flex;
+      color: var(--text-3); pointer-events: none;
+      display: flex; align-items: center;
     }
 
     input, select {
-      width: 100%;
-      padding: 11px 14px;
+      width: 100%; padding: 11px 13px;
       border: 1.5px solid var(--border);
       border-radius: 9px;
-      font-size: 14px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text-primary);
-      background: var(--surface);
+      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      color: var(--text-1); background: var(--surface);
       outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
-      -webkit-appearance: none;
-      appearance: none;
+      transition: border-color .18s, box-shadow .18s;
+      -webkit-appearance: none; appearance: none;
     }
-
-    input.has-icon, select.has-icon { padding-left: 40px; }
-
+    input.icon, select.icon { padding-left: 38px; }
     input:focus, select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px var(--accent-glow);
-      background: #fff;
     }
-
-    input::placeholder { color: var(--text-muted); font-weight: 400; }
+    input::placeholder { color: var(--text-3); font-weight: 400; }
 
     select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238896b3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238896b3' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 36px;
-      cursor: pointer;
+      background-position: right 13px center;
+      padding-right: 34px; cursor: pointer;
     }
 
-    .field-hint {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
+    .f-hint { font-size: 11px; color: var(--text-3); margin-top: 2px; }
 
-    .section-divider {
+    .f-divider {
       grid-column: 1 / -1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       margin: 4px 0;
     }
-
-    .section-divider span {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--text-muted);
-      white-space: nowrap;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .f-divider::before, .f-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .f-divider span {
+      font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; color: var(--text-3); white-space: nowrap;
     }
 
-    .section-divider::before, .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── CARD INPUT ── */
-    .card-brand-row {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .card-brand {
-      height: 26px;
-      padding: 3px 8px;
+    /* card brands */
+    .card-brands { display: flex; gap: 6px; margin-bottom: 14px; }
+    .cb {
+      height: 24px; padding: 3px 9px;
       border: 1.5px solid var(--border);
-      border-radius: 6px;
-      font-size: 10px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      color: var(--text-muted);
+      border-radius: 5px; font-size: 10px; font-weight: 800;
+      display: flex; align-items: center;
     }
+    .cb.visa  { color:#1a1f71; background:#f0f2fb; border-color:#c8d0ef; }
+    .cb.mc    { color:#eb001b; background:#fff5f5; border-color:#f8cdd0; }
+    .cb.amex  { color:#2E77BC; background:#f0f6ff; border-color:#c8dcf0; }
+    .cb.disc  { color:#f76010; background:#fff8f5; border-color:#fcd0b8; }
 
-    .card-brand.visa { color: #1a1f71; border-color: #c8d0ef; background: #f0f2fb; }
-    .card-brand.mc   { color: #eb001b; border-color: #f8cdd0; background: #fff5f5; }
-    .card-brand.amex { color: #2E77BC; border-color: #c8dcf0; background: #f0f6ff; }
-
-    /* ── PREFERENCES ── */
-    .pref-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
+    /* preference buttons */
+    .pref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
     .pref-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 9px;
-      cursor: pointer;
-      font-size: 13px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      color: var(--text-secondary);
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 13px;
+      border: 1.5px solid var(--border); border-radius: 9px;
+      font: 500 13px 'DM Sans', sans-serif;
+      color: var(--text-2); background: var(--surface);
+      cursor: pointer; transition: all .15s; text-align: left;
+    }
+    .pref-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .pref-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .pref-icon { font-size: 15px; }
+
+    /* submit bar */
+    .submit-bar {
       background: var(--surface);
-      transition: all 0.15s;
-      text-align: left;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 22px 26px;
+      margin-bottom: 18px;
+    }
+    .submit-btn {
+      width: 100%; padding: 15px 24px;
+      background: var(--accent); color: #fff; border: none;
+      border-radius: 10px;
+      font: 700 15px 'Syne', sans-serif;
+      letter-spacing: 0.2px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      transition: background .2s, transform .1s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .submit-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
+    }
+    .submit-btn:hover { background: var(--accent-hover); box-shadow: 0 6px 20px rgba(37,99,235,0.32); transform: translateY(-1px); }
+    .submit-btn:active { transform: none; }
+    .submit-note {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 10px; font-size: 11.5px; color: var(--text-3);
     }
 
-    .pref-btn:hover { border-color: var(--accent-bright); color: var(--accent); background: var(--accent-glow); }
-    .pref-btn.selected { border-color: var(--accent); background: var(--accent-glow); color: var(--accent); }
-    .pref-btn .pref-icon { font-size: 16px; }
+    /* ══ SIDEBAR ══ */
+    .sidebar { position: sticky; top: 76px; min-width: 0; }
 
-    /* ── SIDEBAR ── */
-    .sidebar {
-      position: sticky;
-      top: 84px;
-      animation: slideUp 0.4s ease 0.12s both;
-    }
-
-    .sidebar-card {
+    .sb-card {
       background: var(--surface);
-      border-radius: var(--radius);
+      border-radius: var(--r);
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border);
       overflow: hidden;
-      margin-bottom: 16px;
-    }
-
-    .sidebar-header {
-      background: var(--navy);
-      padding: 20px 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sidebar-header::before {
-      content: '';
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 120px; height: 120px;
-      background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
-    }
-
-    .sidebar-airline {
-      display: flex;
-      align-items: center;
-      gap: 10px;
       margin-bottom: 14px;
     }
 
-    .airline-logo {
-      width: 36px;
-      height: 36px;
-      background: rgba(255,255,255,0.12);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 17px;
+    /* dark header of sidebar card */
+    .sb-head {
+      background: var(--navy);
+      padding: 18px 20px 20px;
+      position: relative; overflow: hidden;
+    }
+    .sb-head::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(37,99,235,0.28) 0%, transparent 70%);
     }
 
-    .airline-name { font-size: 13px; color: rgba(255,255,255,0.7); }
-    .flight-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
+    /* airline row */
+    .sb-airline {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; position: relative;
     }
-
-    .sidebar-route {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
+    .sb-airline-icon {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
     }
+    .sb-airline-name { font-size: 12px; color: rgba(255,255,255,0.6); }
+    .sb-flight-num   { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; }
 
-    .sb-airport {
-      font-family: 'Syne', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.5px;
-      flex-shrink: 0;
-    }
-
-    .sb-arrow {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .sb-arrow-line {
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.2);
+    /* route row inside sidebar */
+    .sb-route {
+      display: flex; align-items: center; gap: 0;
       position: relative;
     }
-
+    .sb-iata {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px; font-weight: 800;
+      color: #fff; letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+    .sb-mid {
+      flex: 1; min-width: 0;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 3px;
+      padding: 0 10px;
+    }
+    .sb-arrow-line {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.18);
+      position: relative;
+    }
     .sb-arrow-line::after {
-      content: '▶';
-      position: absolute;
-      right: -4px;
-      top: 50%;
+      content: '';
+      position: absolute; right: -1px; top: 50%;
       transform: translateY(-50%);
-      font-size: 8px;
-      color: rgba(255,255,255,0.3);
-      line-height: 1;
+      border: 4px solid transparent;
+      border-left-color: rgba(255,255,255,0.3);
     }
-
-    .sb-time-pair {
-      display: flex;
+    .sb-times {
+      display: flex; width: 100%;
       justify-content: space-between;
-      width: 100%;
     }
+    .sb-t { font-size: 10px; color: rgba(255,255,255,0.4); white-space: nowrap; }
 
-    .sb-time { font-size: 10.5px; color: rgba(255,255,255,0.45); white-space: nowrap; }
-
-    .sidebar-body { padding: 18px 22px; }
-
-    .detail-row {
-      display: flex;
-      align-items: center;
+    /* sidebar detail rows */
+    .sb-body { padding: 16px 20px; }
+    .sb-row {
+      display: flex; align-items: center;
       justify-content: space-between;
-      padding: 9px 0;
+      padding: 8px 0;
       border-bottom: 1px solid var(--border);
       font-size: 13px;
     }
+    .sb-row:last-child { border-bottom: none; }
+    .sb-key { color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+    .sb-val { font-weight: 600; color: var(--text-1); text-align: right; }
+    .sb-val.green { color: var(--green); }
+    .sb-val.blue  { color: var(--accent); }
 
-    .detail-row:last-child { border-bottom: none; }
-    .detail-key { color: var(--text-muted); font-weight: 400; display: flex; align-items: center; gap: 6px; }
-    .detail-val { font-weight: 600; color: var(--text-primary); text-align: right; }
-    .detail-val.green { color: var(--green); }
-    .detail-val.blue { color: var(--accent); }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--green-bg);
-      color: var(--green);
-      border-radius: 20px;
-      padding: 3px 10px;
-      font-size: 11.5px;
-      font-weight: 600;
+    .status-dot {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--green-bg); color: var(--green);
+      border-radius: 20px; padding: 3px 9px;
+      font-size: 11px; font-weight: 600;
+    }
+    .status-dot::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--green);
     }
 
-    .status-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-
-    /* ── PRICE SUMMARY ── */
-    .price-card { padding: 18px 22px; }
-
-    .price-line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--text-secondary);
+    /* price summary */
+    .sb-price-head {
+      padding: 14px 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sb-price-head-txt {
+      font-family: 'Syne', sans-serif; font-size: 13.5px; font-weight: 700;
+      color: var(--text-1); padding-bottom: 13px;
+    }
+    .sb-price-body { padding: 14px 20px; }
+    .sb-pline {
+      display: flex; justify-content: space-between;
+      font-size: 13px; color: var(--text-2);
       margin-bottom: 8px;
     }
-
-    .price-line.total {
-      font-family: 'Syne', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-top: 12px;
-      padding-top: 12px;
+    .sb-pline.total {
+      font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700;
+      color: var(--text-1);
+      padding-top: 10px; margin-top: 4px;
       border-top: 2px solid var(--border);
       margin-bottom: 0;
     }
 
-    .price-sep { height: 1px; background: var(--border); margin: 6px 0; }
-
-    /* ── SAFETY BADGES ── */
-    .trust-bar {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 14px 22px;
+    /* trust bar */
+    .sb-trust {
       background: var(--surface-2);
       border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex; flex-direction: column; gap: 7px;
     }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11.5px;
-      color: var(--text-muted);
-      font-weight: 500;
+    .sb-trust-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 11.5px; color: var(--text-3); font-weight: 500;
     }
+    .sb-trust-item svg { color: var(--green); flex-shrink: 0; }
 
-    .trust-item svg { color: var(--green); flex-shrink: 0; }
-
-    /* ── SUBMIT ── */
-    .submit-section {
+    /* help box */
+    .help-box {
       background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border);
-      padding: 24px 28px;
-      margin-bottom: 20px;
+      border-radius: var(--r); border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 14px 18px; text-align: center;
+    }
+    .help-box b { font-size: 13px; color: var(--text-1); display: block; margin-bottom: 3px; }
+    .help-box small { font-size: 11.5px; color: var(--text-3); display: block; margin-bottom: 9px; }
+    .help-box a {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none;
     }
 
-    .submit-btn {
-      width: 100%;
-      padding: 16px 28px;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Syne', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .submit-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
-    }
-
-    .submit-btn:hover { background: #1d4ed8; box-shadow: 0 6px 20px rgba(37,99,235,0.35); transform: translateY(-1px); }
-    .submit-btn:active { transform: translateY(0); }
-
-    .submit-note {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* ── MODAL ── */
-    #success-overlay {
-      display: none;
-      position: fixed; inset: 0;
+    /* ══ MODAL ══ */
+    #overlay {
+      display: none; position: fixed; inset: 0;
       background: rgba(10,22,40,0.6);
       backdrop-filter: blur(8px);
       z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      align-items: center; justify-content: center; padding: 20px;
     }
+    #overlay.show { display: flex; }
 
-    #success-overlay.show { display: flex; }
-
-    .modal-box {
-      background: var(--surface);
-      border-radius: 20px;
-      padding: 0;
-      max-width: 460px;
-      width: 100%;
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-      animation: modalPop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+    .modal {
+      background: var(--surface); border-radius: 20px;
+      max-width: 440px; width: 100%;
+      overflow: hidden; box-shadow: var(--shadow-lg);
+      animation: pop .3s cubic-bezier(.34,1.56,.64,1) both;
     }
-
-    @keyframes modalPop {
-      from { transform: scale(0.88) translateY(20px); opacity: 0; }
+    @keyframes pop {
+      from { transform: scale(.88) translateY(20px); opacity: 0; }
       to   { transform: scale(1) translateY(0); opacity: 1; }
     }
-
     .modal-top {
-      background: var(--navy);
-      padding: 40px 40px 32px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: var(--navy); padding: 36px 36px 28px;
+      text-align: center; position: relative; overflow: hidden;
     }
-
     .modal-top::before {
-      content: '';
-      position: absolute;
-      top: -40px; left: 50%;
+      content: ''; position: absolute; top: -50px; left: 50%;
       transform: translateX(-50%);
-      width: 280px; height: 280px;
-      background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%);
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(37,99,235,0.28) 0%, transparent 70%);
     }
-
-    .modal-icon {
-      width: 72px;
-      height: 72px;
+    .modal-check {
+      width: 68px; height: 68px;
       background: linear-gradient(135deg, #059669, #10b981);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 18px;
-      font-size: 32px;
-      position: relative;
-      box-shadow: 0 0 0 12px rgba(5,150,105,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 28px;
+      position: relative; box-shadow: 0 0 0 10px rgba(5,150,105,0.15);
     }
-
-    .modal-heading {
-      font-family: 'Syne', sans-serif;
-      font-size: 24px;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 6px;
+    .modal-h { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+    .modal-s { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .modal-body { padding: 26px 36px 32px; }
+    .pnr-box {
+      background: var(--surface-2); border: 1.5px dashed var(--border-2);
+      border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 22px;
     }
-
-    .modal-sub { font-size: 14px; color: rgba(255,255,255,0.5); }
-
-    .modal-body { padding: 28px 40px 36px; }
-
-    .pnr-block {
-      background: var(--surface-2);
-      border: 1.5px dashed var(--border-strong);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .pnr-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
-
-    .pnr-code {
-      font-family: 'Syne', sans-serif;
-      font-size: 34px;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: 6px;
-    }
-
-    .modal-detail-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      padding: 9px 0;
+    .pnr-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-3); margin-bottom: 8px; }
+    .pnr-code { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; color: var(--navy); letter-spacing: 6px; }
+    .m-row {
+      display: flex; justify-content: space-between;
+      font-size: 13px; padding: 8px 0;
       border-bottom: 1px solid var(--border);
     }
-
-    .modal-detail-row:last-of-type { border-bottom: none; }
-    .modal-detail-key { color: var(--text-muted); }
-    .modal-detail-val { font-weight: 600; color: var(--text-primary); }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 24px;
+    .m-row:last-of-type { border-bottom: none; }
+    .m-key { color: var(--text-3); }
+    .m-val { font-weight: 600; color: var(--text-1); }
+    .modal-btns { display: flex; gap: 9px; margin-top: 22px; }
+    .mbtn {
+      flex: 1; padding: 12px; border-radius: 9px;
+      font: 600 14px 'DM Sans', sans-serif; border: none; cursor: pointer;
+      transition: all .15s;
     }
+    .mbtn.pri { background: var(--accent); color: #fff; }
+    .mbtn.pri:hover { background: var(--accent-hover); }
+    .mbtn.sec { background: var(--surface-3); color: var(--text-2); }
+    .mbtn.sec:hover { background: var(--border); }
 
-    .modal-btn {
-      flex: 1;
-      padding: 12px;
-      border-radius: 9px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.15s;
-    }
-
-    .modal-btn.primary { background: var(--accent); color: #fff; }
-    .modal-btn.primary:hover { background: #1d4ed8; }
-    .modal-btn.secondary { background: var(--surface-3); color: var(--text-secondary); }
-    .modal-btn.secondary:hover { background: var(--border); }
-
-    /* ── EMPTY STATE ── */
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .empty-icon {
-      width: 80px; height: 80px;
-      background: var(--surface-3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      margin: 0 auto 20px;
-    }
-
-    .empty-state h2 { font-family: 'Syne', sans-serif; font-size: 22px; color: var(--text-primary); margin-bottom: 8px; }
-    .empty-state p { color: var(--text-muted); font-size: 14px; }
-
-    /* ── RESPONSIVE ── */
+    /* ══ RESPONSIVE ══ */
     @media (max-width: 860px) {
       main { grid-template-columns: 1fr; }
       .sidebar { position: static; }
     }
-
-    @media (max-width: 560px) {
-      .form-grid { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .rc-top { flex-wrap: wrap; }
+      .rc-price { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); padding-left: 0; padding-top: 14px; margin-left: 0; width: 100%; text-align: left; }
+      .rc-iata { font-size: 34px; }
+      .rc-arrow { width: 110px; }
+      .f-grid { grid-template-columns: 1fr; }
       .field.full { grid-column: 1; }
-      .hero { padding: 24px 18px 0; }
-      .route-hero { padding: 22px 20px 18px; }
-      .airport-iata { font-size: 36px; }
-      .price-amount { font-size: 30px; }
-      main { padding: 20px 16px 48px; }
-      .section-body { padding: 18px 18px; }
-      .modal-top { padding: 32px 24px 24px; }
-      .modal-body { padding: 22px 24px 28px; }
       .pref-grid { grid-template-columns: 1fr; }
-      .route-top { grid-template-columns: 1fr; gap: 20px; }
-      .route-price-block { text-align: left; border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.10); padding-top: 16px; }
+      main { padding: 20px 16px 56px; }
+      .hero { padding: 22px 16px 0; }
+      .route-card { padding: 20px 18px 16px; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ══ HEADER ══ -->
 <header>
   <div class="header-inner">
     <a class="logo" href="#">
@@ -908,518 +624,441 @@
       <div class="logo-text">United <span>Assistance</span></div>
     </a>
     <div class="header-right">
-      <div class="secure-badge">
-        <svg width="13" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="ssl-badge">
+        <svg width="13" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         256-bit SSL Encrypted
       </div>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
-<div class="hero" id="hero-section">
+<!-- ══ HERO ══ -->
+<div class="hero">
   <div class="hero-inner">
     <div class="breadcrumb">
-      <span>Search Results</span>
-      <span class="sep">›</span>
-      <span>Select Flight</span>
-      <span class="sep">›</span>
-      <span class="current">Book Flight</span>
+      <span>Search Results</span><span class="sep">›</span>
+      <span>Select Flight</span><span class="sep">›</span>
+      <span class="cur">Book Flight</span>
     </div>
-    <div class="route-hero" id="route-hero">
-      <!-- Populated by JS -->
-    </div>
+    <div class="route-card" id="route-card"><!-- JS fills this --></div>
   </div>
 </div>
 
-<main id="main-content">
-  <!-- Populated by JS -->
+<!-- ══ MAIN ══ -->
+<main>
+  <div id="form-col"><!-- JS fills this --></div>
+  <aside class="sidebar" id="sidebar"><!-- JS fills this --></aside>
 </main>
 
-<!-- SUCCESS MODAL -->
-<div id="success-overlay">
-  <div class="modal-box">
+<!-- ══ MODAL ══ -->
+<div id="overlay">
+  <div class="modal">
     <div class="modal-top">
-      <div class="modal-icon">✓</div>
-      <div class="modal-heading">Booking Confirmed!</div>
-      <div class="modal-sub">Your reservation is secured.</div>
+      <div class="modal-check">✓</div>
+      <div class="modal-h">Booking Confirmed!</div>
+      <div class="modal-s">Your reservation is secured</div>
     </div>
     <div class="modal-body">
-      <div class="pnr-block">
+      <div class="pnr-box">
         <div class="pnr-label">Booking Reference</div>
         <div class="pnr-code" id="pnr-code"></div>
       </div>
       <div id="modal-details"></div>
-      <div class="modal-actions">
-        <button class="modal-btn secondary" onclick="closeModal()">Close</button>
-        <button class="modal-btn primary">Download E-Ticket</button>
+      <div class="modal-btns">
+        <button class="mbtn sec" onclick="closeModal()">Close</button>
+        <button class="mbtn pri">Download E-Ticket</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // ── URL Params ────────────────────────────────────────────────────────────
-  const params = new URLSearchParams(window.location.search);
-  const get = k => params.get(k) || "";
+/* ── URL params ── */
+const P   = new URLSearchParams(location.search);
+const gp  = k => P.get(k) || "";
 
-  const flight      = get("flight")      || "UA 2847";
-  const airline     = get("airline")     || "United Airlines";
-  const origin      = get("origin")      || "JFK";
-  const destination = get("destination") || "LAX";
-  const departure   = get("departure")   || "2025-08-14T08:30:00";
-  const arrival     = get("arrival")     || "2025-08-14T11:45:00";
-  const duration    = get("duration")    || "315";
-  const price       = get("price")       || "428.00";
-  const seats       = get("seats")       || "12";
-  const aircraft    = get("aircraft")    || "Boeing 737-900";
-  const status      = get("status")      || "On Schedule";
-  const passenger   = get("passenger")   || "";
-  const meeting     = get("meeting")     || "";
+/* Use short IATA only — strip anything in parentheses or before slash */
+const rawOrigin = gp("origin")      || "EWR";
+const rawDest   = gp("destination") || "LAX";
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
-  const fmtTime = str => {
-    try { return new Date(str).toLocaleTimeString("en-US", { hour:"2-digit", minute:"2-digit", hour12:true }); }
-    catch { return str; }
-  };
-  const fmtDate = str => {
-    try { return new Date(str).toLocaleDateString("en-US", { weekday:"short", month:"short", day:"numeric" }); }
-    catch { return str; }
-  };
-  const fmtDuration = mins => {
-    const h = Math.floor(mins/60), m = mins%60;
-    return `${h}h ${m}m`;
-  };
-  const fmtPrice = p => parseFloat(p).toFixed(2);
+/* Extract 3-letter IATA code if full name like "Newark (EWR)" was passed */
+function extractIATA(str) {
+  const m = str.match(/\b([A-Z]{3})\b/g);
+  /* prefer the last 3-letter token (most likely the code) */
+  return m ? m[m.length - 1] : str.slice(0, 3).toUpperCase();
+}
 
-  // ── HERO ──────────────────────────────────────────────────────────────────
-  document.getElementById("route-hero").innerHTML = `
-    <div class="route-top">
-      <div class="route-airports">
-        <div class="airport-block">
-          <div class="airport-iata">${origin}</div>
-          <div class="airport-time">${fmtTime(departure)}</div>
-        </div>
-        <div class="route-arrow">
-          <div class="arrow-svg-wrap">
-            <svg viewBox="0 0 200 14" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <line x1="0" y1="7" x2="188" y2="7" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="5 4"/>
-              <polygon points="188,3 200,7 188,11" fill="rgba(255,255,255,0.4)"/>
-              <circle cx="8" cy="7" r="3" fill="rgba(255,255,255,0.45)"/>
-            </svg>
+const origin      = extractIATA(rawOrigin);
+const destination = extractIATA(rawDest);
+const airline     = gp("airline")   || "United Airlines";
+const flight      = gp("flight")    || "UA302";
+const departure   = gp("departure") || "2025-04-15T14:00:00";
+const arrival     = gp("arrival")   || "2025-04-15T17:30:00";
+const duration    = gp("duration")  || "330";
+const price       = gp("price")     || "345.00";
+const seats       = gp("seats")     || "35";
+const aircraft    = gp("aircraft")  || "Boeing 787-9";
+const status      = gp("status")    || "On Time";
+const meeting     = gp("meeting")   || "";
+
+/* ── helpers ── */
+const fmtTime = s => {
+  try { return new Date(s).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit",hour12:true}); }
+  catch { return s; }
+};
+const fmtDate = s => {
+  try { return new Date(s).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); }
+  catch { return s; }
+};
+const fmtDur = m => { const h=Math.floor(m/60),mn=m%60; return `${h}h ${mn}m`; };
+const fmtP   = v => parseFloat(v).toFixed(2);
+
+/* ── HERO ── */
+document.getElementById("route-card").innerHTML = `
+  <div class="rc-top">
+    <div class="rc-route">
+      <div class="rc-airport">
+        <div class="rc-iata">${origin}</div>
+        <div class="rc-time">${fmtTime(departure)}</div>
+      </div>
+      <div class="rc-arrow">
+        <svg viewBox="0 0 120 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="2" y1="6" x2="108" y2="6" stroke="rgba(255,255,255,0.22)" stroke-width="1.4" stroke-dasharray="5 4"/>
+          <polygon points="108,2 120,6 108,10" fill="rgba(255,255,255,0.38)"/>
+          <circle cx="6" cy="6" r="2.5" fill="rgba(255,255,255,0.45)"/>
+        </svg>
+        <div class="rc-arrow-label">${fmtDur(parseInt(duration))} · Non-stop</div>
+      </div>
+      <div class="rc-airport">
+        <div class="rc-iata">${destination}</div>
+        <div class="rc-time">${fmtTime(arrival)}</div>
+      </div>
+    </div>
+    <div class="rc-spacer"></div>
+    <div class="rc-price">
+      <div class="rc-price-label">Economy · Per Person</div>
+      <div class="rc-price-amount"><sup>$</sup>${fmtP(price)}</div>
+      <div class="rc-price-sub">taxes &amp; fees included</div>
+    </div>
+  </div>
+  <div class="rc-meta">
+    <div class="rc-chip"><div class="rc-dot"></div>${status}</div>
+    <div class="rc-chip">✈ ${flight} · ${airline}</div>
+    <div class="rc-chip">🛫 ${aircraft}</div>
+    <div class="rc-chip"><div class="rc-dot gold"></div>${seats} seats left</div>
+    <div class="rc-chip">📅 ${fmtDate(departure)}</div>
+  </div>
+`;
+
+/* ── FORM COL ── */
+document.getElementById("form-col").innerHTML = `
+
+  <!-- 1 · Passenger -->
+  <div class="f-section">
+    <div class="f-header">
+      <div class="f-num">1</div>
+      <div>
+        <div class="f-title">Passenger Information</div>
+        <div class="f-sub">Enter details exactly as on your travel document</div>
+      </div>
+    </div>
+    <div class="f-body">
+      <div class="f-grid">
+        <div class="field">
+          <label for="fn">First Name</label>
+          <div class="inp-wrap">
+            <div class="inp-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <input id="fn" type="text" class="icon" placeholder="John" required />
           </div>
-          <div class="route-duration">${fmtDuration(parseInt(duration))} · Non-stop</div>
         </div>
-        <div class="airport-block dest">
-          <div class="airport-iata">${destination}</div>
-          <div class="airport-time">${fmtTime(arrival)}</div>
+        <div class="field">
+          <label for="ln">Last Name</label>
+          <input id="ln" type="text" placeholder="Smith" required />
+        </div>
+        <div class="field">
+          <label for="em">Email Address</label>
+          <div class="inp-wrap">
+            <div class="inp-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+            </div>
+            <input id="em" type="email" class="icon" placeholder="john@example.com" required />
+          </div>
+          <div class="f-hint">Confirmation will be sent here</div>
+        </div>
+        <div class="field">
+          <label for="ph">Phone Number</label>
+          <div class="inp-wrap">
+            <div class="inp-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <input id="ph" type="tel" class="icon" placeholder="+1 555 000 0000" />
+          </div>
+        </div>
+
+        <div class="f-divider"><span>Travel Document</span></div>
+
+        <div class="field">
+          <label for="pp">Passport / National ID</label>
+          <div class="inp-wrap">
+            <div class="inp-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M3 9h18M3 15h18"/></svg>
+            </div>
+            <input id="pp" type="text" class="icon" placeholder="A12345678" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="dob">Date of Birth</label>
+          <input id="dob" type="date" required />
+        </div>
+        <div class="field">
+          <label for="nat">Nationality</label>
+          <select id="nat">
+            <option value="">Select country</option>
+            <option selected>United States</option>
+            <option>United Kingdom</option>
+            <option>Canada</option>
+            <option>Australia</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>India</option>
+            <option>Japan</option>
+            <option>Singapore</option>
+            <option>UAE</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gen">Gender</label>
+          <select id="gen">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Non-binary</option>
+            <option>Prefer not to say</option>
+          </select>
         </div>
       </div>
-      <div class="route-price-block">
-        <div class="price-label">Economy · Per Person</div>
-        <div class="price-amount"><sup>$</sup>${fmtPrice(price)}</div>
-        <div class="price-per">taxes &amp; fees included</div>
+    </div>
+  </div>
+
+  <!-- 2 · Preferences -->
+  <div class="f-section">
+    <div class="f-header">
+      <div class="f-num">2</div>
+      <div>
+        <div class="f-title">Flight Preferences</div>
+        <div class="f-sub">Optional — we'll do our best to accommodate</div>
       </div>
     </div>
-    <div class="route-meta-row">
-      <div class="meta-chip"><div class="dot"></div>${status}</div>
-      <div class="meta-chip">✈ ${flight} · ${airline}</div>
-      <div class="meta-chip">🛫 ${aircraft}</div>
-      <div class="meta-chip"><div class="dot gold"></div>${seats} seats left</div>
-      <div class="meta-chip">📅 ${fmtDate(departure)}</div>
+    <div class="f-body">
+      <label style="display:block;margin-bottom:10px;">Seat Preference</label>
+      <div class="pref-grid" style="margin-bottom:18px;">
+        <button class="pref-btn" onclick="togglePref(this,'seat')"><span class="pref-icon">🪟</span> Window</button>
+        <button class="pref-btn" onclick="togglePref(this,'seat')"><span class="pref-icon">🚶</span> Aisle</button>
+        <button class="pref-btn" onclick="togglePref(this,'seat')"><span class="pref-icon">💺</span> Middle</button>
+        <button class="pref-btn" onclick="togglePref(this,'seat')"><span class="pref-icon">📏</span> Extra Legroom</button>
+      </div>
+      <label style="display:block;margin-bottom:10px;">Meal Preference</label>
+      <div class="pref-grid">
+        <button class="pref-btn" onclick="togglePref(this,'meal')"><span class="pref-icon">🍽</span> Standard</button>
+        <button class="pref-btn" onclick="togglePref(this,'meal')"><span class="pref-icon">🥗</span> Vegetarian</button>
+        <button class="pref-btn" onclick="togglePref(this,'meal')"><span class="pref-icon">🌱</span> Vegan</button>
+        <button class="pref-btn" onclick="togglePref(this,'meal')"><span class="pref-icon">☪️</span> Halal</button>
+        <button class="pref-btn" onclick="togglePref(this,'meal')"><span class="pref-icon">✡️</span> Kosher</button>
+        <button class="pref-btn" onclick="togglePref(this,'meal')"><span class="pref-icon">🌾</span> Gluten-Free</button>
+      </div>
+      ${meeting ? `<div style="margin-top:16px;padding:12px 14px;background:var(--surface-2);border-radius:9px;border:1.5px solid var(--border);font-size:13px;color:var(--text-2);"><span style="font-weight:600;color:var(--accent)">📌 Trip Note:</span> ${meeting}</div>` : ""}
     </div>
+  </div>
+
+  <!-- 3 · Payment -->
+  <div class="f-section">
+    <div class="f-header">
+      <div class="f-num">3</div>
+      <div>
+        <div class="f-title">Payment Details</div>
+        <div class="f-sub">Your card info is encrypted and never stored</div>
+      </div>
+    </div>
+    <div class="f-body">
+      <div class="card-brands">
+        <div class="cb visa">VISA</div>
+        <div class="cb mc">MC</div>
+        <div class="cb amex">AMEX</div>
+        <div class="cb disc">DISC</div>
+      </div>
+      <div class="f-grid">
+        <div class="field full">
+          <label for="cn">Cardholder Name</label>
+          <input id="cn" type="text" placeholder="John Smith" required />
+        </div>
+        <div class="field full">
+          <label for="cnum">Card Number</label>
+          <div class="inp-wrap">
+            <div class="inp-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <input id="cnum" type="text" class="icon" placeholder="1234  5678  9012  3456" maxlength="19"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'').replace(/(.{4})/g,'$1 ').trim()" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="exp">Expiry</label>
+          <input id="exp" type="text" placeholder="MM / YY" maxlength="7" oninput="fmtExp(this)" required />
+        </div>
+        <div class="field">
+          <label for="cvv">CVV</label>
+          <input id="cvv" type="text" placeholder="•••" maxlength="4"
+            oninput="this.value=this.value.replace(/\D/g,'')" required />
+          <div class="f-hint">3 digits on back (4 for Amex)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-bar">
+    <button class="submit-btn" onclick="doSubmit()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Confirm &amp; Pay — $${fmtP(price)}
+    </button>
+    <div class="submit-note">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      256-bit SSL encrypted · No charge until confirmed
+    </div>
+  </div>
+`;
+
+/* ── SIDEBAR ── */
+document.getElementById("sidebar").innerHTML = `
+  <div class="sb-card">
+    <div class="sb-head">
+      <div class="sb-airline">
+        <div class="sb-airline-icon">✈</div>
+        <div>
+          <div class="sb-airline-name">${airline}</div>
+          <div class="sb-flight-num">${flight}</div>
+        </div>
+      </div>
+      <div class="sb-route">
+        <div class="sb-iata">${origin}</div>
+        <div class="sb-mid">
+          <div class="sb-arrow-line"></div>
+          <div class="sb-times">
+            <span class="sb-t">${fmtTime(departure)}</span>
+            <span class="sb-t">${fmtTime(arrival)}</span>
+          </div>
+        </div>
+        <div class="sb-iata">${destination}</div>
+      </div>
+    </div>
+    <div class="sb-body">
+      <div class="sb-row">
+        <span class="sb-key">📅 Date</span>
+        <span class="sb-val">${fmtDate(departure)}</span>
+      </div>
+      <div class="sb-row">
+        <span class="sb-key">⏱ Duration</span>
+        <span class="sb-val">${fmtDur(parseInt(duration))}</span>
+      </div>
+      <div class="sb-row">
+        <span class="sb-key">✈ Aircraft</span>
+        <span class="sb-val">${aircraft}</span>
+      </div>
+      <div class="sb-row">
+        <span class="sb-key">💺 Seats Left</span>
+        <span class="sb-val green">${seats} available</span>
+      </div>
+      <div class="sb-row">
+        <span class="sb-key">📋 Status</span>
+        <span class="sb-val"><span class="status-dot">${status}</span></span>
+      </div>
+      <div class="sb-row">
+        <span class="sb-key">🧳 Baggage</span>
+        <span class="sb-val blue">1 × 23kg incl.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-card">
+    <div class="sb-price-head">
+      <div class="sb-price-head-txt">Price Summary</div>
+    </div>
+    <div class="sb-price-body">
+      <div class="sb-pline"><span>Base fare (1 adult)</span><span>$${(parseFloat(price)*.82).toFixed(2)}</span></div>
+      <div class="sb-pline"><span>Taxes &amp; fees</span><span>$${(parseFloat(price)*.18).toFixed(2)}</span></div>
+      <div class="sb-pline"><span>Seat selection</span><span style="color:var(--green)">Included</span></div>
+      <div class="sb-pline"><span>1 checked bag</span><span style="color:var(--green)">Included</span></div>
+      <div class="sb-pline total"><span>Total</span><span>$${fmtP(price)}</span></div>
+    </div>
+    <div class="sb-trust">
+      <div class="sb-trust-item">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        Free cancellation within 24 hours
+      </div>
+      <div class="sb-trust-item">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        Instant e-ticket delivery
+      </div>
+      <div class="sb-trust-item">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        Price-match guarantee
+      </div>
+    </div>
+  </div>
+
+  <div class="help-box">
+    <b>Need assistance?</b>
+    <small>Our support team is available 24/7</small>
+    <a href="tel:18007771234">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      1-800-777-1234
+    </a>
+  </div>
+`;
+
+/* ── utils ── */
+function togglePref(btn, group) {
+  document.querySelectorAll(`.pref-btn[onclick*="'${group}'"]`).forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function fmtExp(inp) {
+  let v = inp.value.replace(/\D/g,"");
+  if (v.length >= 3) v = v.slice(0,2) + " / " + v.slice(2,4);
+  inp.value = v;
+}
+
+function genPNR() {
+  return Array.from({length:6}, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random()*32)]).join("");
+}
+
+function doSubmit() {
+  const req = ["fn","ln","em","pp","dob","cn","cnum","exp","cvv"];
+  const missing = req.some(id => !document.getElementById(id)?.value.trim());
+  if (missing) { alert("Please fill in all required fields."); return; }
+
+  const first = document.getElementById("fn").value.trim();
+  const last  = document.getElementById("ln").value.trim();
+  const cnum  = document.getElementById("cnum").value.trim();
+  const pnr   = genPNR();
+
+  document.getElementById("pnr-code").textContent = pnr;
+  document.getElementById("modal-details").innerHTML = `
+    <div class="m-row"><span class="m-key">Passenger</span><span class="m-val">${first} ${last}</span></div>
+    <div class="m-row"><span class="m-key">Route</span><span class="m-val">${origin} → ${destination}</span></div>
+    <div class="m-row"><span class="m-key">Flight</span><span class="m-val">${flight}</span></div>
+    <div class="m-row"><span class="m-key">Date</span><span class="m-val">${fmtDate(departure)}</span></div>
+    <div class="m-row"><span class="m-key">Card</span><span class="m-val">•••• •••• •••• ${cnum.replace(/\s/g,"").slice(-4)}</span></div>
+    <div class="m-row"><span class="m-key">Total Charged</span><span class="m-val" style="color:var(--accent);font-size:15px">$${fmtP(price)}</span></div>
   `;
+  document.getElementById("overlay").classList.add("show");
+}
 
-  // ── MAIN CONTENT ──────────────────────────────────────────────────────────
-  const main = document.getElementById("main-content");
-
-  main.innerHTML = `
-    <div id="form-col">
-
-      <!-- SECTION 1: Passenger -->
-      <div class="form-section">
-        <div class="section-header">
-          <div class="section-number">1</div>
-          <div>
-            <div class="section-title">Passenger Information</div>
-            <div class="section-subtitle">Enter details exactly as they appear on your travel document</div>
-          </div>
-        </div>
-        <div class="section-body">
-          <div class="form-grid">
-            <div class="field">
-              <label for="first-name">First Name</label>
-              <div class="input-wrap">
-                <div class="input-icon">
-                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
-                </div>
-                <input id="first-name" type="text" class="has-icon" placeholder="John" required />
-              </div>
-            </div>
-            <div class="field">
-              <label for="last-name">Last Name</label>
-              <div class="input-wrap">
-                <input id="last-name" type="text" placeholder="Smith" required />
-              </div>
-            </div>
-            <div class="field">
-              <label for="email">Email Address</label>
-              <div class="input-wrap">
-                <div class="input-icon">
-                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
-                </div>
-                <input id="email" type="email" class="has-icon" placeholder="john@company.com" required />
-              </div>
-              <div class="field-hint">Confirmation will be sent here</div>
-            </div>
-            <div class="field">
-              <label for="phone">Phone Number</label>
-              <div class="input-wrap">
-                <div class="input-icon">
-                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                </div>
-                <input id="phone" type="tel" class="has-icon" placeholder="+1 555 000 0000" />
-              </div>
-            </div>
-
-            <div class="section-divider"><span>Travel Document</span></div>
-
-            <div class="field">
-              <label for="passport">Passport / National ID</label>
-              <div class="input-wrap">
-                <div class="input-icon">
-                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M3 9h18M3 15h18"/></svg>
-                </div>
-                <input id="passport" type="text" class="has-icon" placeholder="A12345678" required />
-              </div>
-            </div>
-            <div class="field">
-              <label for="dob">Date of Birth</label>
-              <div class="input-wrap">
-                <input id="dob" type="date" required />
-              </div>
-            </div>
-            <div class="field">
-              <label for="nationality">Nationality</label>
-              <select id="nationality">
-                <option value="">Select country</option>
-                <option value="US" selected>United States</option>
-                <option value="GB">United Kingdom</option>
-                <option value="CA">Canada</option>
-                <option value="AU">Australia</option>
-                <option value="DE">Germany</option>
-                <option value="FR">France</option>
-                <option value="IN">India</option>
-                <option value="JP">Japan</option>
-                <option value="SG">Singapore</option>
-                <option value="AE">UAE</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="gender">Gender</label>
-              <select id="gender">
-                <option value="">Select</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Non-binary</option>
-                <option>Prefer not to say</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SECTION 2: Preferences -->
-      <div class="form-section">
-        <div class="section-header">
-          <div class="section-number">2</div>
-          <div>
-            <div class="section-title">Flight Preferences</div>
-            <div class="section-subtitle">Optional — we'll try our best to accommodate your choices</div>
-          </div>
-        </div>
-        <div class="section-body">
-          <div style="margin-bottom:16px;">
-            <label style="display:block;margin-bottom:10px;">Seat Preference</label>
-            <div class="pref-grid" id="seat-prefs">
-              <button type="button" class="pref-btn" data-pref="seat" data-val="Window" onclick="selectPref(this,'seat')">
-                <span class="pref-icon">🪟</span> Window Seat
-              </button>
-              <button type="button" class="pref-btn" data-pref="seat" data-val="Aisle" onclick="selectPref(this,'seat')">
-                <span class="pref-icon">🚶</span> Aisle Seat
-              </button>
-              <button type="button" class="pref-btn" data-pref="seat" data-val="Middle" onclick="selectPref(this,'seat')">
-                <span class="pref-icon">💺</span> Middle Seat
-              </button>
-              <button type="button" class="pref-btn" data-pref="seat" data-val="Extra Legroom" onclick="selectPref(this,'seat')">
-                <span class="pref-icon">📏</span> Extra Legroom
-              </button>
-            </div>
-          </div>
-          <div>
-            <label style="display:block;margin-bottom:10px;">Meal Preference</label>
-            <div class="pref-grid" id="meal-prefs">
-              <button type="button" class="pref-btn" data-pref="meal" data-val="Standard" onclick="selectPref(this,'meal')">
-                <span class="pref-icon">🍽</span> Standard
-              </button>
-              <button type="button" class="pref-btn" data-pref="meal" data-val="Vegetarian" onclick="selectPref(this,'meal')">
-                <span class="pref-icon">🥗</span> Vegetarian
-              </button>
-              <button type="button" class="pref-btn" data-pref="meal" data-val="Vegan" onclick="selectPref(this,'meal')">
-                <span class="pref-icon">🌱</span> Vegan
-              </button>
-              <button type="button" class="pref-btn" data-pref="meal" data-val="Halal" onclick="selectPref(this,'meal')">
-                <span class="pref-icon">☪️</span> Halal
-              </button>
-              <button type="button" class="pref-btn" data-pref="meal" data-val="Kosher" onclick="selectPref(this,'meal')">
-                <span class="pref-icon">✡️</span> Kosher
-              </button>
-              <button type="button" class="pref-btn" data-pref="meal" data-val="Gluten-Free" onclick="selectPref(this,'meal')">
-                <span class="pref-icon">🌾</span> Gluten-Free
-              </button>
-            </div>
-          </div>
-          ${meeting ? `<div style="margin-top:16px;padding:12px 14px;background:var(--surface-2);border-radius:9px;border:1.5px solid var(--border);font-size:13px;color:var(--text-secondary);"><span style="font-weight:600;color:var(--accent);">📌 Trip Note:</span> ${meeting}</div>` : ""}
-        </div>
-      </div>
-
-      <!-- SECTION 3: Payment -->
-      <div class="form-section">
-        <div class="section-header">
-          <div class="section-number">3</div>
-          <div>
-            <div class="section-title">Payment Details</div>
-            <div class="section-subtitle">Your card information is encrypted and never stored</div>
-          </div>
-        </div>
-        <div class="section-body">
-          <div class="card-brand-row">
-            <div class="card-brand visa">VISA</div>
-            <div class="card-brand mc">MC</div>
-            <div class="card-brand amex">AMEX</div>
-            <div class="card-brand" style="font-size:9px;">DISCOVER</div>
-          </div>
-          <div class="form-grid">
-            <div class="field full">
-              <label for="card-name">Cardholder Name</label>
-              <div class="input-wrap">
-                <div class="input-icon">
-                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </div>
-                <input id="card-name" type="text" class="has-icon" placeholder="John Smith" required />
-              </div>
-            </div>
-            <div class="field full">
-              <label for="card-number">Card Number</label>
-              <div class="input-wrap">
-                <div class="input-icon">
-                  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </div>
-                <input id="card-number" type="text" class="has-icon" placeholder="1234  5678  9012  3456"
-                  maxlength="19"
-                  oninput="this.value=this.value.replace(/[^0-9]/g,'').replace(/(.{4})/g,'$1 ').trim()"
-                  required />
-              </div>
-            </div>
-            <div class="field">
-              <label for="expiry">Expiry</label>
-              <input id="expiry" type="text" placeholder="MM / YY" maxlength="7"
-                oninput="formatExpiry(this)" required />
-            </div>
-            <div class="field">
-              <label for="cvv">Security Code</label>
-              <div class="input-wrap">
-                <input id="cvv" type="text" placeholder="CVV" maxlength="4"
-                  oninput="this.value=this.value.replace(/\D/g,'')" required />
-              </div>
-              <div class="field-hint">3 digits on back (4 for Amex)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SUBMIT -->
-      <div class="submit-section">
-        <button type="button" class="submit-btn" onclick="submitBooking()">
-          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Confirm & Pay — $${fmtPrice(price)}
-        </button>
-        <div class="submit-note">
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Payments are encrypted with 256-bit SSL. You will not be charged until confirmed.
-        </div>
-      </div>
-    </div>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="sidebar-card">
-        <div class="sidebar-header">
-          <div class="sidebar-airline">
-            <div class="airline-logo">✈</div>
-            <div>
-              <div class="airline-name">${airline}</div>
-              <div class="flight-num">${flight}</div>
-            </div>
-          </div>
-          <div class="sidebar-route">
-            <div class="sb-airport">${origin}</div>
-            <div class="sb-arrow">
-              <div class="sb-arrow-line"></div>
-              <div class="sb-time-pair">
-                <span class="sb-time">${fmtTime(departure)}</span>
-                <span class="sb-time">${fmtTime(arrival)}</span>
-              </div>
-            </div>
-            <div class="sb-airport">${destination}</div>
-          </div>
-        </div>
-        <div class="sidebar-body">
-          <div class="detail-row">
-            <span class="detail-key">
-              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              Date
-            </span>
-            <span class="detail-val">${fmtDate(departure)}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">
-              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              Duration
-            </span>
-            <span class="detail-val">${fmtDuration(parseInt(duration))}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">✈ Aircraft</span>
-            <span class="detail-val">${aircraft}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">💺 Seats Left</span>
-            <span class="detail-val green">${seats} available</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">📋 Status</span>
-            <span class="detail-val"><div class="status-pill">${status}</div></span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">🧳 Baggage</span>
-            <span class="detail-val blue">1 × 23kg incl.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRICE SUMMARY -->
-      <div class="sidebar-card">
-        <div style="padding:16px 22px 0; border-bottom:1px solid var(--border);">
-          <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text-primary);padding-bottom:14px;">Price Summary</div>
-        </div>
-        <div class="price-card">
-          <div class="price-line">
-            <span>Base fare (1 adult)</span>
-            <span>$${(parseFloat(price) * 0.82).toFixed(2)}</span>
-          </div>
-          <div class="price-line">
-            <span>Taxes & fees</span>
-            <span>$${(parseFloat(price) * 0.18).toFixed(2)}</span>
-          </div>
-          <div class="price-line">
-            <span>Seat selection</span>
-            <span style="color:var(--green);">Included</span>
-          </div>
-          <div class="price-line">
-            <span>1 checked bag</span>
-            <span style="color:var(--green);">Included</span>
-          </div>
-          <div class="price-line total">
-            <span>Total</span>
-            <span>$${fmtPrice(price)}</span>
-          </div>
-        </div>
-        <div class="trust-bar">
-          <div class="trust-item">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            Free cancellation within 24 hours
-          </div>
-          <div class="trust-item">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            Instant e-ticket delivery
-          </div>
-          <div class="trust-item">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            Price-match guarantee
-          </div>
-        </div>
-      </div>
-
-      <!-- NEED HELP -->
-      <div style="background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:16px 20px;box-shadow:var(--shadow-sm);text-align:center;">
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">Need assistance?</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Our support team is available 24/7</div>
-        <a href="tel:18007771234" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          1-800-777-1234
-        </a>
-      </div>
-    </aside>
-  `;
-
-  // ── Preference selector ───────────────────────────────────────────────────
-  const selectedPrefs = { seat: "", meal: "" };
-
-  function selectPref(btn, type) {
-    document.querySelectorAll(`.pref-btn[data-pref="${type}"]`).forEach(b => b.classList.remove("selected"));
-    btn.classList.add("selected");
-    selectedPrefs[type] = btn.dataset.val;
-  }
-
-  // ── Card expiry format ────────────────────────────────────────────────────
-  function formatExpiry(input) {
-    let v = input.value.replace(/\D/g, "");
-    if (v.length >= 3) v = v.slice(0,2) + " / " + v.slice(2,4);
-    input.value = v;
-  }
-
-  // ── PNR generator ─────────────────────────────────────────────────────────
-  function generatePNR() {
-    return Array.from({length:6}, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random()*32)]).join("");
-  }
-
-  // ── Submit ────────────────────────────────────────────────────────────────
-  function submitBooking() {
-    const first = document.getElementById("first-name").value.trim();
-    const last  = document.getElementById("last-name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const passport = document.getElementById("passport").value.trim();
-    const cardNum = document.getElementById("card-number").value.trim();
-    const cardName = document.getElementById("card-name").value.trim();
-    const expiry = document.getElementById("expiry").value.trim();
-    const cvv = document.getElementById("cvv").value.trim();
-
-    if (!first || !last || !email || !passport || !cardNum || !cardName || !expiry || !cvv) {
-      alert("Please fill in all required fields before confirming.");
-      return;
-    }
-
-    const pnr = generatePNR();
-    document.getElementById("pnr-code").textContent = pnr;
-
-    const maskedCard = "•••• •••• •••• " + cardNum.replace(/\s/g,"").slice(-4);
-
-    document.getElementById("modal-details").innerHTML = `
-      <div class="modal-detail-row"><span class="modal-detail-key">Passenger</span><span class="modal-detail-val">${first} ${last}</span></div>
-      <div class="modal-detail-row"><span class="modal-detail-key">Route</span><span class="modal-detail-val">${origin} → ${destination}</span></div>
-      <div class="modal-detail-row"><span class="modal-detail-key">Flight</span><span class="modal-detail-val">${flight}</span></div>
-      <div class="modal-detail-row"><span class="modal-detail-key">Date</span><span class="modal-detail-val">${fmtDate(departure)}</span></div>
-      <div class="modal-detail-row"><span class="modal-detail-key">Payment</span><span class="modal-detail-val">${maskedCard}</span></div>
-      <div class="modal-detail-row"><span class="modal-detail-key">Total Charged</span><span class="modal-detail-val" style="color:var(--accent);font-size:15px;">$${fmtPrice(price)}</span></div>
-    `;
-
-    document.getElementById("success-overlay").classList.add("show");
-  }
-
-  function closeModal() {
-    document.getElementById("success-overlay").classList.remove("show");
-  }
+function closeModal() {
+  document.getElementById("overlay").classList.remove("show");
+}
 </script>
 </body>
 </html>
