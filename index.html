@@ -163,85 +163,98 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 16px 16px 0 0;
-      padding: 28px 32px 24px;
+      padding: 32px 36px 26px;
       margin-bottom: -1px;
     }
 
     .route-top {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+      gap: 32px;
     }
 
     .route-airports {
       display: flex;
       align-items: center;
-      gap: 20px;
-    }
-
-    .airport-block { text-align: center; }
-
-    .airport-iata {
-      font-family: 'Syne', sans-serif;
-      font-size: 48px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -1px;
-    }
-
-    .airport-city {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      margin-top: 4px;
-      font-weight: 400;
-    }
-
-    .route-arrow {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 0 8px;
-    }
-
-    .arrow-line {
-      display: flex;
-      align-items: center;
       gap: 0;
     }
 
-    .arrow-line svg { color: rgba(255,255,255,0.35); }
+    .airport-block { text-align: left; flex-shrink: 0; }
+    .airport-block.dest { text-align: left; }
+
+    .airport-iata {
+      font-family: 'Syne', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .airport-time {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 5px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .route-arrow {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 0 20px;
+      min-width: 120px;
+    }
+
+    .arrow-svg-wrap {
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .arrow-svg-wrap svg { width: 100%; height: 14px; }
 
     .route-duration {
       font-size: 11px;
       color: rgba(255,255,255,0.4);
       white-space: nowrap;
       font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
-    .route-price-block { text-align: right; }
+    .route-price-block {
+      text-align: right;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255,255,255,0.10);
+      padding-left: 32px;
+    }
 
-    .price-label { font-size: 11.5px; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 4px; }
+    .price-label { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 500; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 
     .price-amount {
       font-family: 'Syne', sans-serif;
-      font-size: 40px;
+      font-size: 44px;
       font-weight: 800;
       color: #fff;
       line-height: 1;
+      letter-spacing: -1px;
     }
 
-    .price-amount sup { font-size: 18px; margin-right: 1px; font-weight: 600; }
-    .price-per { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+    .price-amount sup { font-size: 20px; margin-right: 2px; font-weight: 600; vertical-align: super; }
+    .price-per { font-size: 11.5px; color: rgba(255,255,255,0.35); margin-top: 5px; }
 
     .route-meta-row {
       display: flex;
       align-items: center;
       gap: 0;
-      margin-top: 20px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
       flex-wrap: wrap;
     }
 
@@ -249,16 +262,17 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12.5px;
+      font-size: 12px;
       color: rgba(0,0,0);
       font-weight: 500;
-      padding: 0 16px;
+      padding: 0 18px;
       border-right: 1px solid rgba(255,255,255,0.10);
+      white-space: nowrap;
     }
 
     .meta-chip:first-child { padding-left: 0; }
     .meta-chip:last-child { border-right: none; }
-    .meta-chip .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .meta-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
     .meta-chip .dot.gold { background: var(--gold); }
 
     /* ── MAIN LAYOUT ── */
@@ -537,38 +551,53 @@
     .sidebar-route {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      margin-top: 4px;
     }
 
     .sb-airport {
       font-family: 'Syne', sans-serif;
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.5px;
+      flex-shrink: 0;
     }
 
-    .sb-arrow { color: rgba(255,255,255,0.3); font-size: 18px; }
-
-    .sb-times {
+    .sb-arrow {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      flex: 1;
       gap: 2px;
-      padding: 0 8px;
+      min-width: 0;
+    }
+
+    .sb-arrow-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
       position: relative;
     }
 
-    .sb-times::before {
-      content: '';
+    .sb-arrow-line::after {
+      content: '▶';
       position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%,-50%);
-      width: 1px;
-      height: 60%;
-      background: rgba(255,255,255,0.15);
+      right: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1;
     }
 
-    .sb-time { font-size: 11px; color: rgba(255,255,255,0.5); white-space: nowrap; text-align: center; }
+    .sb-time-pair {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .sb-time { font-size: 10.5px; color: rgba(255,255,255,0.45); white-space: nowrap; }
 
     .sidebar-body { padding: 18px 22px; }
 
@@ -856,16 +885,16 @@
       .form-grid { grid-template-columns: 1fr; }
       .field.full { grid-column: 1; }
       .hero { padding: 24px 18px 0; }
-      .route-hero { padding: 20px 20px 18px; }
+      .route-hero { padding: 22px 20px 18px; }
       .airport-iata { font-size: 36px; }
-      .price-amount { font-size: 32px; }
+      .price-amount { font-size: 30px; }
       main { padding: 20px 16px 48px; }
       .section-body { padding: 18px 18px; }
       .modal-top { padding: 32px 24px 24px; }
       .modal-body { padding: 22px 24px 28px; }
       .pref-grid { grid-template-columns: 1fr; }
-      .route-top { flex-direction: column; gap: 16px; }
-      .route-price-block { text-align: left; }
+      .route-top { grid-template-columns: 1fr; gap: 20px; }
+      .route-price-block { text-align: left; border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.10); padding-top: 16px; }
     }
   </style>
 </head>
@@ -969,25 +998,27 @@
       <div class="route-airports">
         <div class="airport-block">
           <div class="airport-iata">${origin}</div>
-          <div class="airport-city">${fmtTime(departure)}</div>
+          <div class="airport-time">${fmtTime(departure)}</div>
         </div>
         <div class="route-arrow">
-          <svg width="160" height="20" viewBox="0 0 160 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="10" x2="140" y2="10" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-            <path d="M145 5 L160 10 L145 15" fill="rgba(255,255,255,0.35)"/>
-            <circle cx="24" cy="10" r="3" fill="rgba(255,255,255,0.5)"/>
-          </svg>
+          <div class="arrow-svg-wrap">
+            <svg viewBox="0 0 200 14" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <line x1="0" y1="7" x2="188" y2="7" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <polygon points="188,3 200,7 188,11" fill="rgba(255,255,255,0.4)"/>
+              <circle cx="8" cy="7" r="3" fill="rgba(255,255,255,0.45)"/>
+            </svg>
+          </div>
           <div class="route-duration">${fmtDuration(parseInt(duration))} · Non-stop</div>
         </div>
-        <div class="airport-block">
+        <div class="airport-block dest">
           <div class="airport-iata">${destination}</div>
-          <div class="airport-city">${fmtTime(arrival)}</div>
+          <div class="airport-time">${fmtTime(arrival)}</div>
         </div>
       </div>
       <div class="route-price-block">
         <div class="price-label">Economy · Per Person</div>
         <div class="price-amount"><sup>$</sup>${fmtPrice(price)}</div>
-        <div class="price-per">taxes & fees included</div>
+        <div class="price-per">taxes &amp; fees included</div>
       </div>
     </div>
     <div class="route-meta-row">
@@ -1233,10 +1264,12 @@
           </div>
           <div class="sidebar-route">
             <div class="sb-airport">${origin}</div>
-            <div class="sb-times">
-              <div class="sb-time">${fmtTime(departure)}</div>
-              <div class="sb-time" style="font-size:9px;opacity:0.6;">✈</div>
-              <div class="sb-time">${fmtTime(arrival)}</div>
+            <div class="sb-arrow">
+              <div class="sb-arrow-line"></div>
+              <div class="sb-time-pair">
+                <span class="sb-time">${fmtTime(departure)}</span>
+                <span class="sb-time">${fmtTime(arrival)}</span>
+              </div>
             </div>
             <div class="sb-airport">${destination}</div>
           </div>
